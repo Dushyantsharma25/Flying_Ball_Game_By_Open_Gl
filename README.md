@@ -3,7 +3,7 @@
 
 to plAY this game you have to install freeglut 
 
-if you want to run this game:-
+after that if you want to run this game:-
         then run this command on your terminal in directory where your file game.cpp is saved
 
         g++ -o game game.cpp -lGL -lGLU -lglut
