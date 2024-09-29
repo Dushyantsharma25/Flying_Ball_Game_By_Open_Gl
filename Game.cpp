@@ -3,12 +3,13 @@
 #include <cmath>
 #include <cstdlib> // For rand()
 #include <ctime>   // For time()
+#include <string>  // For string manipulation
 
 float ballX = 0.0f;          // Ball's X position
 float ballY = 0.0f;          // Ball's Y position
 float ballRadius = 20.0f;    // Ball radius
-float ballSpeedX = 2.0f;     // Slower speed of the ball in X direction
-float ballSpeedY = 2.0f;     // Slower speed of the ball in Y direction
+float ballSpeedX = 2.0f;     // Ball speed in X direction
+float ballSpeedY = 2.0f;     // Ball speed in Y direction
 float rectX = 0.0f;          // Rectangle's X position
 const float rectWidth = 100.0f; // Width of the rectangle
 const float rectHeight = 20.0f; // Height of the rectangle
@@ -24,10 +25,20 @@ void setRandomBallDirection() {
 // Initialization function
 void myInit() {
     glClearColor(1.0, 1.0, 1.0, 0.0); // Set background color to white
-    glColor3f(1.0f, 0.0f, 0.0f);      // Set ball color to red
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     gluOrtho2D(-600.0, 600.0, -340.0, 340.0); // Set up the coordinate system
+}
+
+// Function to draw the score
+void drawScore() {
+    glColor3f(0.0f, 0.0f, 0.0f); // Set text color to black
+    glRasterPos2f(-580.0f, 300.0f); // Position for the score
+
+    std::string scoreText = "Score: " + std::to_string(score);
+    for (char c : scoreText) {
+        glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, c); // Draw each character
+    }
 }
 
 // Keyboard function to handle user input
@@ -99,6 +110,8 @@ void myDisplay() {
     glVertex2f(rectX + rectWidth / 2, -300 + rectHeight / 2);
     glVertex2f(rectX - rectWidth / 2, -300 + rectHeight / 2);
     glEnd();
+
+    drawScore(); // Draw the score
 
     glutSwapBuffers(); // Swap the buffers
 }
