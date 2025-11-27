@@ -11,3 +11,6 @@ after that if you want to run this game:-
 after that your program will compiled now to run this program named "game" type this command:-
 
         ./game
+
+
+use 'A' for left movement and 'D' for right side movement
